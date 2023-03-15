@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using NewVets2Tech.Api.Data.Models;
 using NewVets2Tech.Api.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace NewVets2Tech.Controllers
 {
@@ -19,7 +20,7 @@ namespace NewVets2Tech.Controllers
         [HttpGet]
          public async Task<IActionResult> Get()
          {
-             var students = _WAVets2TechContext.Students.ToList();
+             var students = await _WAVets2TechContext.Students.ToListAsync();
              return Ok(students);
          }
     }

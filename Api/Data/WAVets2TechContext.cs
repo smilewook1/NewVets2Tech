@@ -31,14 +31,7 @@ namespace NewVets2Tech.Api.Data.Models
         public virtual DbSet<Preference> Preferences { get; set; } = null!;
         public virtual DbSet<Student> Students { get; set; } = null!;
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            if (!optionsBuilder.IsConfigured)
-            {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Server=(local); Database=WAVets2Tech;Integrated Security=true");
-            }
-        }
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -48,7 +41,7 @@ namespace NewVets2Tech.Api.Data.Models
 
                 entity.ToTable("Admin");
 
-                entity.HasComment("IMPORTANT: Read the description of the column \"control_level.\" References to this table in code must ALWAYS account for the value of \"control_level\" to prevent security issues.\r\n\r\nStores information on administrator accounts. Less thorough than the other two account types, because not as much is necessary.");
+                entity.ToTable(e => e.HasComment("IMPORTANT: Read the description of the column \\\"control_level.\\\" References to this table in code must ALWAYS account for the value of \\\"control_level\\\" to prevent security issues.\\r\\n\\r\\nStores information on administrator accounts. Less thorough than the other two account types, because not as much is necessary."));
 
                 entity.Property(e => e.InternalId).HasColumnName("internal_id");
 
@@ -95,7 +88,7 @@ namespace NewVets2Tech.Api.Data.Models
 
                 entity.ToTable("Bookmarked_Job");
 
-                entity.HasComment("Stores jobs bookedmarked by individual student accounts.");
+                entity.ToTable(e => e.HasComment("Stores jobs bookedmarked by individual student accounts."));
 
                 entity.Property(e => e.InternalId).HasColumnName("internal_id");
 
@@ -122,7 +115,7 @@ namespace NewVets2Tech.Api.Data.Models
 
                 entity.ToTable("Bookmarked_Student");
 
-                entity.HasComment("Stores students bookmarked by individual employer accounts.");
+                entity.ToTable(e => e.HasComment("Stores students bookmarked by individual employer accounts."));
 
                 entity.Property(e => e.InternalId).HasColumnName("internal_id");
 
@@ -149,7 +142,7 @@ namespace NewVets2Tech.Api.Data.Models
 
                 entity.ToTable("Company");
 
-                entity.HasComment("Will be used to store information on the companies each employer belongs to. Multiple employers can be associated with 1 company, and the same applies to jobs.");
+                entity.ToTable(e => e.HasComment("Will be used to store information on the companies each employer belongs to. Multiple employers can be associated with 1 company, and the same applies to jobs."));
 
                 entity.Property(e => e.InternalId).HasColumnName("internal_id");
 
@@ -182,7 +175,7 @@ namespace NewVets2Tech.Api.Data.Models
 
                 entity.ToTable("Document");
 
-                entity.HasComment("IMPORTANT: Read the description of the column \"document_for.\" References to this table in code must ALWAYS account for the value of \"document_for,\" to prevent documents from appearing in unexpected places.\r\n\r\nStores documents related to students, companies, and jobs. Since the column \"reference_id\" can reference 3 tables, it is treated as a foreign key to all 3, but with minimal constraints, and does not respond to changes to related tables. ");
+                entity.ToTable(e => e.HasComment("IMPORTANT: Read the description of the column \"document_for.\" References to this table in code must ALWAYS account for the value of \"document_for,\" to prevent documents from appearing in unexpected places.\r\n\r\nStores documents related to students, companies, and jobs. Since the column \"reference_id\" can reference 3 tables, it is treated as a foreign key to all 3, but with minimal constraints, and does not respond to changes to related tables. "));
 
                 entity.Property(e => e.InternalId).HasColumnName("internal_id");
 
@@ -234,7 +227,7 @@ namespace NewVets2Tech.Api.Data.Models
 
                 entity.ToTable("Education");
 
-                entity.HasComment("Details a student's education at a particular school. Multiple schools can be linked to a single student's account.  If the student_id value is 0, that probably means it isn't connected to a student for some reason.");
+                entity.ToTable(e => e.HasComment("Details a student's education at a particular school. Multiple schools can be linked to a single student's account.  If the student_id value is 0, that probably means it isn't connected to a student for some reason."));
 
                 entity.Property(e => e.InternalId)
                     .ValueGeneratedNever()
@@ -279,7 +272,7 @@ namespace NewVets2Tech.Api.Data.Models
 
                 entity.ToTable("Employer");
 
-                entity.HasComment("A table containing information on employer accounts.");
+                entity.ToTable(e => e.HasComment("A table containing information on employer accounts."));
 
                 entity.Property(e => e.InternalId).HasColumnName("internal_id");
 
@@ -335,7 +328,7 @@ namespace NewVets2Tech.Api.Data.Models
 
                 entity.ToTable("Experience");
 
-                entity.HasComment("Describes work experience a student has from a past employer. Multiple entires in this table can be linked to a single student. The column \"date_range_end\" is nullable, just in case they're still working for that employer.");
+                entity.ToTable(e => e.HasComment("Describes work experience a student has from a past employer. Multiple entires in this table can be linked to a single student. The column \"date_range_end\" is nullable, just in case they're still working for that employer."));
 
                 entity.Property(e => e.InternalId).HasColumnName("internal_id");
 
@@ -382,7 +375,7 @@ namespace NewVets2Tech.Api.Data.Models
 
                 entity.ToTable("Help_Request");
 
-                entity.HasComment("IMPORTANT: Read the description of the columns \"request_type\" and \"account_type.\" References to this table in code must ALWAYS account for the value of \"account_type\" to prevent students from being mixed up with employers.\r\n\r\nA table to track help requests that have been submitted, the details of the request, and whether or not they have been resolved.");
+                entity.ToTable(e => e.HasComment("IMPORTANT: Read the description of the columns \"request_type\" and \"account_type.\" References to this table in code must ALWAYS account for the value of \"account_type\" to prevent students from being mixed up with employers.\r\n\r\nA table to track help requests that have been submitted, the details of the request, and whether or not they have been resolved."));
 
                 entity.Property(e => e.InternalId).HasColumnName("internal_id");
 
@@ -448,7 +441,7 @@ namespace NewVets2Tech.Api.Data.Models
 
                 entity.ToTable("Job");
 
-                entity.HasComment("A table containing all the details on job postings.");
+                entity.ToTable(e => e.HasComment("A table containing all the details on job postings."));
 
                 entity.Property(e => e.InternalId).HasColumnName("internal_id");
 
@@ -572,7 +565,7 @@ namespace NewVets2Tech.Api.Data.Models
 
                 entity.ToTable("Military_Background");
 
-                entity.HasComment("A table containing the details on a specific student's military background. Tied to a student record but stored separately so the student table does not become bloated.");
+                entity.ToTable(e => e.HasComment("A table containing the details on a specific student's military background. Tied to a student record but stored separately so the student table does not become bloated."));
 
                 entity.HasIndex(e => e.StudentId, "Military_Background_FK_Unique")
                     .IsUnique();
@@ -624,7 +617,7 @@ namespace NewVets2Tech.Api.Data.Models
             {
                 entity.HasKey(e => e.InternalId);
 
-                entity.HasComment("IMPORTANT: Read the description of the column \"account_type.\" References to this table in code must ALWAYS account for the value of \"account_type\" to prevent the preferences from a different account from being used by accident.\r\n\r\nStores the personal preferences/settings of an an Admin, Employer, or Student account. More columns are planned to be added over time.");
+                entity.ToTable(e => e.HasComment("IMPORTANT: Read the description of the column \"account_type.\" References to this table in code must ALWAYS account for the value of \"account_type\" to prevent the preferences from a different account from being used by accident.\r\n\r\nStores the personal preferences/settings of an an Admin, Employer, or Student account. More columns are planned to be added over time."));
 
                 entity.Property(e => e.InternalId).HasColumnName("internal_id");
 
@@ -664,7 +657,7 @@ namespace NewVets2Tech.Api.Data.Models
 
                 entity.ToTable("Student");
 
-                entity.HasComment("A table containing information on student accounts.");
+                entity.ToTable(e => e.HasComment("A table containing information on student accounts."));
 
                 entity.Property(e => e.InternalId).HasColumnName("internal_id");
 
