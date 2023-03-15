@@ -16,12 +16,12 @@ namespace NewVets2Tech.Controllers
             _WAVets2TechContext = waVets2TechContext;
         }
 
-        /* [HttpGet]
+        [HttpGet]
          public async Task<IActionResult> Get()
          {
-             var students = await _WAVets2TechContext.Student.ToListAsync();
+             var students = _WAVets2TechContext.Students.ToList();
              return Ok(students);
-         }*/
+         }
     }
 }
 
