@@ -1,14 +1,17 @@
 import { useEffect, useState } from "react";
 import Layout from './components/shared/Layout';
+import AllStudents from "./components/Students";
 
 const App = () => {
+
+    import { useState } from "react";
 
     //1 create useState
     const [students, setStudents] = useState([])
 
     //2 Call Api
     useEffect(() => {
-        fetch("api/student/GetStudents")
+        fetch("api/Student/Get")
             .then(response => { return response.json() })
             .then(responseJson => { 
 
@@ -22,25 +25,7 @@ const App = () => {
     return
     (
         <Layout>
-        <div className="container">
-            <h1>Students</h1>
-            <div className="row">
-                <div className="col-sm-12">
-                    <table responsive="sm">
-                        <thead>
-                            students.map((item) => (
-                                <tr>
-                                <td>{item.FirstName}</td>
-
-                                ))
-                                </tr>
-                        </thead>
-
-                    </table>
-                </div>
-            </div>
-
-        </div>
+            <AllStudents></AllStudents>
         </Layout>
 
     )

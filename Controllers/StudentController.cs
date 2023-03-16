@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 namespace NewVets2Tech.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
 
     public class StudentController : ControllerBase
     {
