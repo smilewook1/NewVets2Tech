@@ -5,23 +5,30 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddDbContext<WAVets2TechContext>();
-builder.Services.AddControllers();
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-
-
 builder.Services.AddDbContext<WAVets2TechContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("WAVets2TechConnection"));
 });
 
+builder.Services.AddControllers();
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+
+
 
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (!app.Environment.IsDevelopment())
+if (app.Environment.IsDevelopment())
 {
+    // ensure the database exists in development
+    using (var scope = app.Services.CreateScope())
+    {
+        var services = scope.ServiceProvider;
+        var dbContext = services.GetRequiredService<WAVets2TechContext>();
+        dbContext.Database.EnsureCreated();
+    }
+
     app.UseSwagger();
     app.UseSwaggerUI();
 }

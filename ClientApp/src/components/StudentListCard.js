@@ -5,7 +5,7 @@ function StudentListCard(props) {
         <Card>
             <Card.Img variant="top" src={props.imageUrl} />
             <Card.Body>
-                <Card.Title>{props.firstName}{props.lastName}</Card.Title>
+                <Card.Title>{props.lastName.toUpperCase()}, {props.firstName}</Card.Title>
                 <Card.Text>
                     <b>About:</b> {props.about}
                 </Card.Text>

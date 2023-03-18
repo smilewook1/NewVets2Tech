@@ -1,18 +1,16 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using NewVets2Tech.Api.Data.Models;
-using NewVets2Tech.Api.Data;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using NewVets2Tech.Api.Data.Models;
 
 namespace NewVets2Tech.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
 
-    public class StudentController : ControllerBase
+    public class StudentsController : ControllerBase
     {
         private readonly WAVets2TechContext _WAVets2TechContext;
-        public StudentController(WAVets2TechContext waVets2TechContext)
+        public StudentsController(WAVets2TechContext waVets2TechContext)
         {
             _WAVets2TechContext = waVets2TechContext;
         }
