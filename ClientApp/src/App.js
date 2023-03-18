@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import Layout from './components/shared/Layout';
+import Layout from './components/Layout';
 import StudentList from "./components/StudentList";
 import { fetchStudents } from "./Api";
 
