@@ -1,34 +1,26 @@
 import { useEffect, useState } from "react";
-import Layout from './components/shared/Layout';
-import AllStudents from "./components/Students";
+import Layout from './components/Layout';
+import StudentList from "./components/StudentList";
+import { fetchStudents } from "./Api";
 
-const App = () => {
-
-    import { useState } from "react";
-
-    //1 create useState
+export default function App() {
+    // create initial state
     const [students, setStudents] = useState([])
-
-    //2 Call Api
+    // load state
+    // note: empty array only runs once!
     useEffect(() => {
-        fetch("api/Student/Get")
-            .then(response => { return response.json() })
-            .then(responseJson => { 
-
-                setStudents(responseJson)
-            })
-    }, [])
+        setStudents([]);
+        fetchStudents()
+            .then(setStudents)
+            .catch(err => console.error(err));
+    }, []);
 
     //Create div and table
-
-
-    return
-    (
-        <Layout>
-            <AllStudents></AllStudents>
+    return (
+        <Layout title="Washington Vets 2 Tech">
+            {   
+                <StudentList items={students}></StudentList>
+            }
         </Layout>
-
-    )
+    );
 }
-
-export default App;

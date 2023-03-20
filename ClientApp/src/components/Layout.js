@@ -1,11 +1,12 @@
 ﻿import Navbar from "react-bootstrap/Navbar";
+import Container from "react-bootstrap/Container";
 
 function Layout(props) {
     return (
         <div>
             <Navbar bg="primary" variant="dark" expand="lg">
                 <Container>
-                    <Navbar.Brand>Washington Vets 2 Tech</Navbar.Brand>
+                    <Navbar.Brand>{props.title}</Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 </Container>
             </Navbar>
