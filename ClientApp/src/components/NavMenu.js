@@ -1,6 +1,7 @@
 ﻿import React, { Component } from 'react';
 import { Collapse, Navbar, NavbarBrand, NavbarToggler, NavItem, NavLink } from 'reactstrap';
 import { Link } from 'react-router-dom';
+
 import './NavMenu.css';
 
 //The client app will now reflect the server configuration that is set via the global window object.
@@ -36,7 +37,7 @@ export class NavMenu extends Component {
         return (
             <header>
                 <Navbar className="navbar-expand-sm navbar-toggleable-sm ng-white border-bottom box-shadow mb-3" container light>
-                    <NavbarBrand tag={Link} href="/"> <img src="./images/Logoheader.png" width="100" height="50" alt="WA Vets2Tech" /></NavbarBrand>
+                    <NavbarBrand tag={Link} to="/">WaVets2TechWeb</NavbarBrand>
                     <NavbarToggler onClick={this.toggleNavbar} className="mr-2" />
                     <Collapse className="d-sm-inline-flex flex-sm-row-reverse" isOpen={!this.state.collapsed} navbar>
                         <ul className="navbar-nav flex-grow">

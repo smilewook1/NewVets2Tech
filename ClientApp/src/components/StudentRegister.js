@@ -1,67 +1,141 @@
 ﻿import React, { useState } from 'react';//importing useState from react package
-import Axios from 'axios' //import axios package to allow a student to be added
 import './Home.css';
 
-import { Button, Form, FormGroup, Label, Input } from 'reactstrap'; //using Button,Form,FormGroup, Label and Input from reactstrap package.
-// so that you can use these function in your code
 
 
 
 export const StudentRegister = () => {
 
+    const [firstName, setFirstName] = useState("");
+    const [lastName, setLastName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [phone, setPhone] = useState("");
+    const [students, setStudents] = useState([]);
 
-    const addStudent = () => {
-        Axios.post('http://localhost:3010/create', {
-            email: email,
-            password: password,
-        }).then(() => {
-            console.log("success");
-        });
+    const handleFirstNameChange = (e) => {
+        setFirstName(e.target.value);
     };
 
+    const handleLastNameChange = (e) => {
+        setLastName(e.target.value);
+    };
+
+    const handleEmailChange = (e) => {
+        setEmail(e.target.value);
+    };
+
+    const handlePasswordChange = (e) => {
+        setPassword(e.target.value);
+    };
+
+    const handlePhoneChange = (e) => {
+        setPhone(e.target.value);
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        const newStudent = { firstName, lastName, email, password, phone };
+        setStudents([...students, newStudent]);
+        setFirstName("");
+        setLastName("");
+        setEmail("");
+        setPassword("");
+        setPhone("");
+    };
 
     return (
-        <Form className="login-form">
-
-            <div className='cool'>
-                <h2>Sign Up</h2>{/* This is the title for the Student Register form */}
-            </div>
-
-
-            <br />
-
-            <FormGroup>
-                <Label>Email (Personal Email)</Label>
-                <Input type="email" placeholder="Email"
-                    onChange={(event) => {
-                        setEmail(event.target.value);
-                    }}
-                />
-            </FormGroup>
-            <FormGroup>
-                <Label>Password</Label>
-                <Input type="password" placeholder="Password"
-                    onChange={(event) => {
-                        setPassword(event.target.value);
-                    }}
-                />
-            </FormGroup>
-            <br />
-            <div className='center'>
-                <Button onClick={addStudent}> Register
-                </Button>
-            </div>
-
-
-
-
-            <br></br>
-            <br></br>
-
-        </Form>
-
+        <div className="container">
+            <h1 className="title">Vets2Tech Student Register</h1>
+            <form onSubmit={handleSubmit}>
+                <div className="form-group">
+                    <label htmlFor="firstName">First Name:</label>
+                    <input
+                        type="text"
+                        id="firstName"
+                        className="form-control"
+                        value={firstName}
+                        onChange={handleFirstNameChange}
+                        required
+                    />
+                </div>
+                <div className="form-group">
+                    <label htmlFor="lastName">Last Name:</label>
+                    <input
+                        type="text"
+                        id="lastName"
+                        className="form-control"
+                        value={lastName}
+                        onChange={handleLastNameChange}
+                        required
+                    />
+                </div>
+                <div className="form-group">
+                    <label htmlFor="email">Email:</label>
+                    <input
+                        type="email"
+                        id="email"
+                        className="form-control"
+                        value={email}
+                        onChange={handleEmailChange}
+                        required
+                    />
+                </div>
+                <div className="form-group">
+                    <label htmlFor="password">Password:</label>
+                    <input
+                        type="password"
+                        id="password"
+                        className="form-control"
+                        value={password}
+                        onChange={handlePasswordChange}
+                        required
+                    />
+                </div>
+                <div className="form-group">
+                    <label htmlFor="phone">Phone:</label>
+                    <input
+                        type="tel"
+                        id="phone"
+                        className="form-control"
+                        value={phone}
+                        onChange={handlePhoneChange}
+                        required
+                    />
+                </div>
+                <button type="submit" className="btn btn-primary">
+                    Add Student
+                </button>
+            </form>
+            <h2 className="subtitle">Student List</h2>
+            {students.length === 0 ? (
+                <p>No students added yet.</p>
+            ) : (
+                <table className="table">
+                    <thead>
+                        <tr>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Email</th>
+                            <th>Password</th>
+                            <th>Phone</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {students.map((student, index) => (
+                            <tr key={index}>
+                                <td>{student.firstName}</td>
+                                <td>{student.lastName}</
+                                td>
+                                <td>{student.email}</td>
+                                <td>{student.password}</td>
+                                <td>{student.phone}</td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            )}
+        </div>
 
     );
 }
