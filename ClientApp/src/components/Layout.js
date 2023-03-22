@@ -1,18 +1,18 @@
-﻿import Navbar from "react-bootstrap/Navbar";
-import Container from "react-bootstrap/Container";
+﻿import React, { Component } from 'react';
+import { Container } from 'reactstrap';
+import { NavMenu } from './NavMenu';
 
-function Layout(props) {
-    return (
-        <div>
-            <Navbar bg="primary" variant="dark" expand="lg">
+export class Layout extends Component {
+    static displayName = Layout.name;
+
+    render() {
+        return (
+            <div>
+                <NavMenu />
                 <Container>
-                    <Navbar.Brand>{props.title}</Navbar.Brand>
-                    <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                    {this.props.children}
                 </Container>
-            </Navbar>
-            <Container>{props.children}</Container>
-        </div>
-    );
+            </div>
+        );
+    }
 }
-
-export default Layout;
