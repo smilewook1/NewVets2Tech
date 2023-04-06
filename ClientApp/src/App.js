@@ -1,8 +1,7 @@
 
 import './App.css';// this is referencing App.css so all the css in App.css will be applied to this file
 import 'bootstrap/dist/css/bootstrap.min.css'  //css for bootstrap link to use this
-import "/images/Logoheader.png";
-
+import './images/Logoheader.png'
 import { BrowserRouter, Routes, Route } from "react-router-dom"; //this is using BrowserRouter, Routes,Route, Link from react-router-dom package
 
 import { About } from './components/About';//this is referencing About.js from the folder components 
@@ -44,13 +43,13 @@ function App() {
 
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
                 <a class="navbar-brand" href="/">
-                    <img src="/images/Logoheader.png" width="30" height="30" alt="" />
+                    <img src="/images/Logoheader.png" width="30" height="30" alt="Logo"></img>
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav">
+                    <ul class="navbar-nav mr-auto">
                         <li class="nav-item active">
                             <a class="nav-link" href="/Home">Home <span class="sr-only">(current)</span></a>
                         </li>
@@ -60,16 +59,18 @@ function App() {
                         <li class="nav-item">
                             <a class="nav-link" href="/Contact">Contact</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/StudentRegister">Register</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/StudentLogin">Login</a>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Register/Login
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="/StudentRegister">Register</a>
+                                <a class="dropdown-item" href="/StudentLogin">Login</a>
+                            </div>
                         </li>
                     </ul>
                 </div>
             </nav>
-
 
 
 
