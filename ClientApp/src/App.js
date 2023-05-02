@@ -43,9 +43,10 @@ function App() {
         <BrowserRouter>{/*this is to keep your UI in sync with the URL by using Route  */}
 
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <a class="navbar-brand" href="/">
+                //<a class="navbar-brand" href="/">
                     <img src="/images/Logoheader.png" width="30" height="30" alt="" />
                 </a>
+                
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
