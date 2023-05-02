@@ -11,8 +11,10 @@ import { StudentLogin } from './components/StudentLogin';//this is referencing S
 import { ForgotPassword } from './components/ForgotPassword';//this is referencing ForgotPassword.js from the folder components
 import { CompanyRegister } from './components/CompanyRegister';//this is referencing CompanyRegister.js from the folder components
 import { CompanyLogin } from './components/CompanyLogin';//this is referencing CompanyLogin.js from the folder components
-
+import { Layout } from './components/Layout';
 import { Home } from './components/Home';
+import React, { useEffect, useState } from "react";
+
 
 
 /*export default class App extends Component {
@@ -35,52 +37,24 @@ import { Home } from './components/Home';
 
 function App() {
 
+    const [students, setStudents] = useState([]);
+
+    useEffect(() => {
+        fetch("api/student")
+            .then((response) => {
+                return response.json();
+            })
+            .then(data => {
+                setStudents(data);
+            })
+    }, []);
 
 
 
     return (
-        <BrowserRouter>{/*this is to keep your UI in sync with the URL by using Route  */}
-
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <a class="navbar-brand" href="/">
-                    <img src="/images/Logoheader.png" width="30" height="30" alt="Logo"></img>
-                </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav mr-auto">
-                        <li class="nav-item active">
-                            <a class="nav-link" href="/Home">Home <span class="sr-only">(current)</span></a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/About">About</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/Contact">Contact</a>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Register/Login
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="/StudentRegister">Register</a>
-                                <a class="dropdown-item" href="/StudentLogin">Login</a>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
-
-
-
-
-
-
-
+        <><BrowserRouter>{/*this is to keep your UI in sync with the URL by using Route  */}
             <div>
-
-
+                <Layout>
 
                 <br></br>
                 <Routes>
@@ -97,11 +71,26 @@ function App() {
 
                     <Route path="/" element={<Home />} />
 
-                </Routes>
+                    </Routes>
+                </Layout>
             </div>
             <div>
             </div>
         </BrowserRouter>
+
+
+
+
+            <main>
+                {(students != null) ?
+                    students.map((index, id) => (
+                        <h3 key={id}>
+                            Id: {index.internalId}, Email: {index.email}, First Name: {index.firstName}, Last Name: {index.lastName}, Password: {index.passwordHash}
+                        </h3>
+                    ))
+                    :
+                    <div>Loading</div>}
+            </main></>
     );
 }
 

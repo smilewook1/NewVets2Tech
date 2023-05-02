@@ -4,10 +4,15 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 using NewVets2Tech.Api.Data.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace NewVets2Tech.Api.Data.Models
 {
-    public partial class WAVets2TechContext : DbContext
+    public class AppUser : IdentityUser
+    {
+
+    }
+    public partial class WAVets2TechContext : IdentityDbContext<AppUser>
     {
         public WAVets2TechContext()
         {
