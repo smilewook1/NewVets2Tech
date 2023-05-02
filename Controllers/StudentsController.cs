@@ -21,6 +21,7 @@ namespace NewVets2Tech.Controllers
              var students = await _WAVets2TechContext.Students.ToListAsync();
              return Ok(students);
          }
+
     }
 }
 
