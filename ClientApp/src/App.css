@@ -1,0 +1,36 @@
+﻿
+.Navbar {
+    align-items: center;
+    background-color: black;
+    width: 100%;
+    height: 80px;
+    color: white;
+    display: flex;
+}
+
+.navbar-nav {
+    margin-left: auto;
+}
+
+.Nav .navbar-nav {
+    margin: auto;
+}
+
+
+.Navbar .leftSide {
+    flex: 50%;
+}
+
+.Navbar .rightSide {
+    flex: 50%;
+}
+
+.button {
+    background-color: blue;
+}
+
+.leftside {
+    text-align: left;
+}
+
+
